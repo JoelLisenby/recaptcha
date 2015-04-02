@@ -1,5 +1,5 @@
 # recaptcha
-A super simple PHP class for use with [https://www.google.com/recaptcha/admin](reCAPTCHA)'s new 2.0 API.
+A super simple PHP class for use with [reCAPTCHA](https://www.google.com/recaptcha/admin)'s new 2.0 API.
 
 # usage
 (See [index.php](index.php) for a working example)
