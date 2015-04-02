@@ -1,5 +1,5 @@
 # recaptcha
-A simple PHP implementation of the new 2.0 API
+A super simple PHP class for use with [https://www.google.com/recaptcha/admin](reCAPTCHA)'s new 2.0 API.
 
 # usage
 (See [index.php](index.php) for a working example)
@@ -15,11 +15,11 @@ $recaptcha = new Recaptcha($site_key, $secret_key);
 ```php
 echo $recaptcha->script();
 ```
-**3** Use the captcha() function to place the captcha at end of form
+**3** Use the captcha() function to place the captcha at end of your form
 ```php
 echo $recaptcha->captcha();
 ```
-**4** Use the success() function to check if visitor passes captcha
+**4** Use the success() function to check if the visitor successfully filled out the captcha
 ```php
 if($recaptcha->success()) { ... }
 ```
