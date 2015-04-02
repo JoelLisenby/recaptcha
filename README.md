@@ -4,6 +4,8 @@ A super simple PHP class for use with [reCAPTCHA](https://www.google.com/recaptc
 # usage
 (See [index.php](index.php) for a working example)
 
+First you'll need your site key and secret key from https://www.google.com/recaptcha/
+
 **1** Include recaptcha.class.php and initiate with your site key and secret key
 ```php
 require_once 'recaptcha.class.php';
