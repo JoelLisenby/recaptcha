@@ -4,14 +4,15 @@ A super simple PHP class for use with [reCAPTCHA](https://www.google.com/recaptc
 # usage
 (See [index.php](index.php) for a working example)
 
-Before you begin, you'll need a site key and secret key from https://www.google.com/recaptcha/
+Before you begin, you'll need a site key and secret key from https://www.google.com/recaptcha/ (choose invisible reCAPTCHA option)
 
 **1** Include recaptcha.class.php and initiate with your site key and secret key
 ```php
 require_once 'recaptcha.class.php';
+$form_id = 'formID';
 $site_key = 'YOUR_SITE_KEY';
 $secret_key = 'YOUR_SECRET_KEY';
-$recaptcha = new Recaptcha($site_key, $secret_key);
+$recaptcha = new Recaptcha($form_id, $site_key, $secret_key);
 ```
 **2** Use the script() function to place the recaptcha scripts (should be above ```</body>```)
 ```php
