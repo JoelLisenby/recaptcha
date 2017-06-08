@@ -1,9 +1,11 @@
 <?php
 class Recaptcha {
+  protected $form_id;
   protected $sitekey;
   private $secret;
 
-  public function __construct($sitekey, $secret) {
+  public function __construct($form_id, $sitekey, $secret) {
+    $this->form_id = $form_id;
     $this->sitekey = $sitekey;
     $this->secret = $secret;
   }
@@ -40,17 +42,16 @@ class Recaptcha {
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
 window.onload = function() {
-  var element = document.getElementById('submitForm');
-  element.onclick = validate;
+  var element = document.getElementById('submit<?php echo $this->form_id; ?>Form');
+  if(element) {
+    element.onclick = function(e) {
+      e.preventDefault();
+      grecaptcha.execute();
+    };
+  }
 };
-
-function validate(e) {
-  e.preventDefault();
-  grecaptcha.execute();
-}
-
-function onSubmitCaptchaForm(token) {
-  document.getElementById('full_quote_form').submit();
+function onSubmitCaptchaForm<?php echo $this->form_id; ?>(token) {
+  document.getElementById('<?php echo $this->form_id; ?>').submit();
 };
 </script>
 <?php
@@ -58,8 +59,8 @@ function onSubmitCaptchaForm(token) {
   }
   
   public function button($value = "Submit") {
-    $html = '<button id="submitForm">'. $value .'</button>'."\n";
-    $html .= '<div id="recaptcha" class="g-recaptcha" data-sitekey="'. $this->sitekey .'" data-badge="inline" data-callback="onSubmitCaptchaForm" data-size="invisible"></div>'."\n";
+    $html = '<button id="submit'. $this->form_id .'Form">'. $value .'</button>'."\n";
+    $html .= '<div id="recaptcha" class="g-recaptcha" data-sitekey="'. $this->sitekey .'" data-badge="inline" data-callback="onSubmitCaptchaForm'. $this->form_id .'" data-size="invisible"></div>'."\n";
     return $html;
   }
 }

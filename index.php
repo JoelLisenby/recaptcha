@@ -1,9 +1,10 @@
 <?php
 require_once 'recaptcha.class.php';
 
+$form_id = "form";
 $site_key = 'YOUR_SITE_KEY';
 $secret_key = 'YOUR_SECRET_KEY';
-$recaptcha = new Recaptcha($site_key, $secret_key);
+$recaptcha = new Recaptcha($form_id, $site_key, $secret_key);
 ?>
 <!doctype html>
 <html>
@@ -14,7 +15,7 @@ $recaptcha = new Recaptcha($site_key, $secret_key);
 
 <body>
 <?php ob_start(); ?>
-<form method="post">
+<form id="form" method="post">
 <input type="text" name="example" value="" placeholder="Example Field" />
 <?php echo $recaptcha->button(); ?>
 </form>

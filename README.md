@@ -1,5 +1,5 @@
 # recaptcha
-A super simple PHP class for use with [reCAPTCHA](https://www.google.com/recaptcha/admin)'s new 2.0 API.
+A super simple PHP class for use with [reCAPTCHA](https://www.google.com/recaptcha/admin)'s new Invisible ReCAPTCHA API.
 
 # usage
 (See [index.php](index.php) for a working example)
@@ -13,13 +13,13 @@ $site_key = 'YOUR_SITE_KEY';
 $secret_key = 'YOUR_SECRET_KEY';
 $recaptcha = new Recaptcha($site_key, $secret_key);
 ```
-**2** Use the script() function to place the recaptcha script (usually above ```</head>```)
+**2** Use the script() function to place the recaptcha scripts (should be above ```</body>```)
 ```php
 echo $recaptcha->script();
 ```
-**3** Use the captcha() function to place the captcha at end of your form
+**3** Use the button('Button Value') function to place the submit button and reCAPTCHA at end of your form
 ```php
-echo $recaptcha->captcha();
+echo $recaptcha->button('Button Value');
 ```
 **4** Use the success() function to check if the visitor successfully filled out the captcha
 ```php
