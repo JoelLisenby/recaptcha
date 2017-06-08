@@ -35,11 +35,32 @@ class Recaptcha {
   }
   
   public function script() {
-    echo '<script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+    ob_start();
+?>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+window.onload = function() {
+  var element = document.getElementById('submitForm');
+  element.onclick = validate;
+};
+
+function validate(e) {
+  e.preventDefault();
+  grecaptcha.execute();
+}
+
+function onSubmitCaptchaForm(token) {
+  document.getElementById('full_quote_form').submit();
+};
+</script>
+<?php
+    return ob_get_clean();
   }
   
-  public function captcha() {
-    echo '<div class="g-recaptcha" data-sitekey="'. $this->sitekey .'"></div>';
+  public function button($value = "Submit") {
+    $html = '<button id="submitForm">'. $value .'</button>'."\n";
+    $html .= '<div id="recaptcha" class="g-recaptcha" data-sitekey="'. $this->sitekey .'" data-badge="inline" data-callback="onSubmitCaptchaForm" data-size="invisible"></div>'."\n";
+    return $html;
   }
 }
 ?>
