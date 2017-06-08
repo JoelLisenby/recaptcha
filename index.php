@@ -9,17 +9,14 @@ $recaptcha = new Recaptcha($site_key, $secret_key);
 <html>
 
 <head>
-<title>reCaptcha 2.0 API Class</title>
-<?php echo $recaptcha->script(); ?>
+<title>Invisible ReCAPTCHA API Class Demo</title>
 </head>
 
 <body>
-
 <?php ob_start(); ?>
 <form method="post">
 <input type="text" name="example" value="" placeholder="Example Field" />
-<?php echo $recaptcha->captcha(); ?>
-<input type="submit" value="Submit" />
+<?php echo $recaptcha->button(); ?>
 </form>
 <?php
 $form = ob_get_clean();
@@ -35,8 +32,8 @@ if(!empty($_POST)) {
 	echo $form;
 }
 
+echo $recaptcha->script();
 ?>
-
 </body>
 
 </html>
