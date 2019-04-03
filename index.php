@@ -10,7 +10,7 @@ $recaptcha = new Recaptcha($form_id, $site_key, $secret_key);
 <html>
 
 <head>
-<title>Invisible ReCAPTCHA API Class Demo</title>
+<title>ReCAPTCHA v3 API Class Demo</title>
 </head>
 
 <body>
