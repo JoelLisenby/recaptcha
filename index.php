@@ -23,7 +23,12 @@ $recaptcha = new Recaptcha($form_id, $site_key, $secret_key);
 $form = ob_get_clean();
 
 if(!empty($_POST)) {
-	if($recaptcha->success()) {
+	$response = $recaptcha->get_response();
+
+	echo "Success: ". ( $response->success ? 'true' : 'false' ) ."<br />\r\n";
+	echo "Score: ". $response->score ."<br />\r\n";
+
+	if($response->success) {
 		echo "Passed Captcha.";
 	} else {
 		echo "Failed Captcha.";

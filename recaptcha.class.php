@@ -9,8 +9,8 @@ class Recaptcha {
     $this->sitekey = $sitekey;
     $this->secret = $secret;
   }
-  
-  public function success() {
+
+  public function get_response() {
     if(!empty($_POST['g-recaptcha-response'])) {
       $url = 'https://www.google.com/recaptcha/api/siteverify';
       $data = array(
@@ -30,10 +30,14 @@ class Recaptcha {
       $context = stream_context_create($options);
       $result = json_decode(file_get_contents($url, false, $context));
       
-      return $result->success;
+      return $result;
     } else {
       return false;
     }
+  }
+  
+  public function success() {
+    return $this->get_response()->success;
   }
   
   public function script() {
